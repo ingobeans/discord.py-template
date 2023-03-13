@@ -12,17 +12,18 @@ TOKEN = "discord bot token"
 async def on_ready():
     print("Bot is ready!")
     await client.change_presence(status=discord.Status.online,
-                                 activity=discord.Game("krank"))
+                                 activity=discord.Game("with beans"))
 
 @client.command()
 async def cmd(ctx):
-    await ctx.send("jag är ett kommand mr " + ctx.author.name)
+    await ctx.send("This is a command 🤠, " + ctx.author.name)
 
 @client.event
 async def on_message(message):
     if message.content == "msg":
-        await message.channel.send("vanligt medelande mr " + message.author.name)
+        await message.channel.send("Normal message, " + message.author.name)
     
+    #if you use commands along with on_message, this line is required for the commands to work.
     await client.process_commands(message)
 
 client.run(TOKEN)
